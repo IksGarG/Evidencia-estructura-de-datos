@@ -24,7 +24,7 @@ void enqueue(int newValue, int newPriority)
    struct node *element = malloc(sizeof(struct node));
    if (element == NULL)
    {
-      printf("Error: No se puede crear un elemento en la cola");
+      printf("Error: No se puede crear un elemento en la cola\n");
       return;
    }
    element->value = newValue;
@@ -43,6 +43,7 @@ void enqueue(int newValue, int newPriority)
       // las prioridades son iguales, vemos cuantos hay de la misma prioridad para mandarlo al final los que ya estaban
       if (currentNode->priority == newPriority)
       {
+         printf("Nuevo elemento tiene la misma prioridad\n");
          // avanzamos para ir hasta el final de los elementos que tienen la misma prioridad, si hay más de uno, y ahi insertar el nuevo
          if (currentNode->next != NULL && currentNode->next->priority == newPriority)
          {
@@ -73,6 +74,7 @@ void enqueue(int newValue, int newPriority)
       // el nuevo elemento es más importante que el actual, entonces inserta
       else if (currentNode->priority > newPriority)
       {
+         printf("Nuevo elemento tiene mayor prioridad\n");
          // el elemento va a ir hasta el frente
          if (currentNode == front)
          {
@@ -89,7 +91,25 @@ void enqueue(int newValue, int newPriority)
          // el elemento va a ir en medio de dos elementos
          else
          {
-            element->next = currentNode;
+            element->next = currentNode->next;
+            currentNode->next = element;
+         }
+         break;
+      }
+      else if (currentNode->priority < newPriority)
+      {
+         printf("Nuevo elemento tiene menor prioridad\n");
+         // el elemento va a ir hasta atras
+         if (currentNode == back)
+         {
+            back->next = element;
+            back = element;
+         }
+         // el elemento va a ir en medio de dos elementos
+         else
+         {
+            element->next = currentNode->next;
+            currentNode->next = element;
          }
          break;
       }
@@ -105,7 +125,7 @@ void dequeue()
 {
    if (queueIsEmpty() == 1)
    {
-      printf("Error: La cola esta vacia");
+      printf("Error: La cola esta vacia\n");
       return;
    }
    else
@@ -121,7 +141,7 @@ void dequeue()
       {
          front = front->next;
       }
-      printf("Eliminando %d", temp->value);
+      printf("Eliminando el elemento (%d, %d) \n", temp->value, temp->priority);
       free(temp);
    }
 }
@@ -138,6 +158,30 @@ void deleteQueue()
 // 5. Buscar un nodo en la cola con prioridades
 void findNode(int value, int priority)
 {
+   int index = 0;
+   int notFound = 1;
+   if (queueIsEmpty() == 1)
+   {
+      printf("Error: La cola esta vacia\n");
+      return;
+   }
+   struct node *currentNode = front;
+   while (currentNode != NULL)
+   {
+      if (currentNode->value == value && currentNode->priority == priority)
+      {
+         notFound = 0;
+         printf("El elemento (%d, %d) se encuentra en la posicion %d de la cola.\n", value, priority, index);
+         printf("Es decir, tiene %d elementos antes de el.\n", index);
+         return;
+      }
+      currentNode = currentNode->next;
+      index++;
+   }
+   if (notFound == 1)
+   {
+      printf("El elemento (%d, %d) no se encuentra en la cola.\n", value, priority);
+   }
 }
 
 // 6. Saber si la cola está vacía
@@ -149,8 +193,13 @@ int queueIsEmpty()
 // 7. Encontrar el número de nodos en la cola con prioridades
 int queueSize()
 {
+   if (queueIsEmpty() == 1)
+   {
+      printf("Error: La cola esta vacia\n");
+      return 0;
+   }
    int size = 0;
-   struct node *currentNode = back;
+   struct node *currentNode = front;
    while (currentNode != NULL)
    {
       size++;
@@ -164,9 +213,10 @@ void printQueue()
 {
    if (queueIsEmpty() == 1)
    {
-      printf("La cola esta vacia");
+      printf("La cola esta vacia\n");
       return;
    }
+   printf("Elementos de la cola: \n");
    int i = 0;
    struct node *currentNode = front;
    while (currentNode != NULL)
@@ -179,10 +229,25 @@ void printQueue()
 
 void main()
 {
+   // enqueueing
    enqueue(1, 1);
    enqueue(2, 2);
    enqueue(3, 3);
    enqueue(4, 2);
    enqueue(5, 1);
+   // printing
+   printQueue();
+   // getting queue size
+   printf("Tamaño de la cola: %d\n", queueSize());
+   // searching for an element in the queue
+   printf("Buscando un elemento en la cola\n");
+   findNode(3, 3);
+   // dequeueing
+   printf("Eliminando el elemento de hasta adelante\n");
+   dequeue();
+   printQueue();
+   // deleting queue
+   printf("Eliminando la cola\n");
+   deleteQueue();
    printQueue();
 }
