@@ -119,6 +119,29 @@ void enqueue(int newValue, int newPriority)
 }
 
 // 2. Añadir múltiples nodos consecutivos a la cola con prioridades
+void enqueueMultiple()
+{
+   int newValue, newPriority;
+   printf("Ingresa el valor del nuevo elemento: ");
+   scanf("%d", &newValue);
+   printf("Ingresa la prioridad del nuevo elemento: ");
+   scanf("%d", &newPriority);
+   enqueue(newValue, newPriority);
+   char answer;
+   do
+   {
+      printf("¿Deseas agregar otro elemento? (s/n): ");
+      scanf(" %c", &answer);
+      if (answer == 's')
+      {
+         printf("Ingresa el valor del elemento: ");
+         scanf("%d", &newValue);
+         printf("Ingresa la prioridad del elemento: ");
+         scanf("%d", &newPriority);
+         enqueue(newValue, newPriority);
+      }
+   } while (answer == 's');
+}
 
 // 3. Eliminar un nodo de la cola con prioridades
 void dequeue()
@@ -229,24 +252,27 @@ void printQueue()
 
 void main()
 {
-   // enqueueing
+   // agregar elementos estaticamente
    enqueue(1, 1);
    enqueue(2, 2);
    enqueue(3, 3);
    enqueue(4, 2);
    enqueue(5, 1);
-   // printing
+   // imprimir cola
    printQueue();
-   // getting queue size
+   // agregando varios elementos consecutivos
+   printf("Agregando varios elementos consecutivos: \n");
+   enqueueMultiple();
+   // obteniendo el tamaño de la cola
    printf("Tamaño de la cola: %d\n", queueSize());
-   // searching for an element in the queue
+   // buscando un elemento en la cola
    printf("Buscando un elemento en la cola\n");
    findNode(3, 3);
-   // dequeueing
+   // eliminando al elemento de hasta adelante en la cola
    printf("Eliminando el elemento de hasta adelante\n");
    dequeue();
    printQueue();
-   // deleting queue
+   // eliminando la cola
    printf("Eliminando la cola\n");
    deleteQueue();
    printQueue();
