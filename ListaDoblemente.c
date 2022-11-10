@@ -102,6 +102,7 @@ void delete (int item)
         printf("\n Item not found\n");
     }
 }
+<<<<<<< Updated upstream
 int main()
 {
     int choice, item;
@@ -133,4 +134,67 @@ int main()
         }
     } while (choice != 4);
     return 0;
+=======
+// Function to eliminate repeated nodes
+void delete_repeated()  
+{  
+    struct node *ptr1, *ptr2, *dup;  
+    ptr1 = head;  
+    while(ptr1 != NULL && ptr1 -> next != head)  
+    {  
+        ptr2 = ptr1;  
+        while(ptr2 -> next != head)  
+        {  
+            if(ptr1 -> data == ptr2 -> next -> data)  
+            {  
+                dup = ptr2 -> next;  
+                ptr2 -> next = ptr2 -> next -> next;  
+                dup -> next -> prev = ptr2;  
+                free(dup);  
+            }  
+            else  
+            {  
+                ptr2 = ptr2 -> next;  
+            }  
+        }  
+        ptr1 = ptr1 -> next;  
+    }  
+}
+int main ()  
+{  
+    int choice,item;  
+    do   
+    {  
+        printf("\n1.Insert in begining\n2.Delete\n3.Delete Repeated\n4.Display\n5.Exit\n");  
+        printf("\nEnter your choice?\n");        
+        scanf("\n%d",&choice);  
+        switch(choice)  
+        {  
+            case 1:  
+            printf("\nEnter the item?\n");  
+            scanf("%d",&item);  
+            beg_insert(item);  
+            break;  
+            case 2:  
+            printf("\nEnter the item which you want to delete?\n");  
+            scanf("%d",&item);  
+            delete(item);  
+            break;  
+            case 3:  
+            printf("\nEnter the item which you want to delete?\n");
+            scanf("%d",&item);
+            delete_repeated(item);  
+            break;  
+            case 4:  
+            display();
+            break;  
+            case 5:
+            exit(0);
+            break;
+            default:
+            printf("\nPlease enter valid choice..");  
+        }  
+    }while(choice!=5);
+    return 0;  
+>>>>>>> Stashed changes
 }
