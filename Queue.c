@@ -1,6 +1,7 @@
 /*
    Iker Garcia German
    Rodrigo Nuñez Magallanes
+   Rafael Blanga Hanono
    Segundo Codigo Evidencia 1
 */
 
@@ -34,88 +35,48 @@ void enqueue(int newValue, int newPriority)
    {
       front = element;
       back = element;
+      printQueue();
       return;
    }
    struct node *currentNode = front;
-   struct node *previousNode = NULL;
    while (currentNode != NULL)
    {
-      // las prioridades son iguales, vemos cuantos hay de la misma prioridad para mandarlo al final los que ya estaban
-      if (currentNode->priority == newPriority)
+      // prioridad del que entra es mayor, se inserta
+      if (currentNode->priority > newPriority)
       {
-         printf("Nuevo elemento tiene la misma prioridad\n");
-         // avanzamos para ir hasta el final de los elementos que tienen la misma prioridad, si hay más de uno, y ahi insertar el nuevo
-         if (currentNode->next != NULL && currentNode->next->priority == newPriority)
-         {
-            do
-            {
-               currentNode = currentNode->next;
-            } while (currentNode->priority == newPriority);
-         }
-         /*
-         aqui no se revisa si es el de hasta en frente, porque si estamos en el caso en el que
-         el elemento que entra tiene la misma prioridad que otro que ya existe en la cola, forzosamente
-         deberá ir detrás de él y por tanto nunca será en el frente
-         */
-         // el elemento va a ir hasta atras
-         if (currentNode == back)
-         {
-            back->next = element;
-            back = element;
-         }
-         // el elemento va a ir en medio de dos elementos
-         else
-         {
-            element->next = currentNode->next;
-            currentNode->next = element;
-         }
-         break;
-      }
-      // el nuevo elemento es más importante que el actual, entonces inserta
-      else if (currentNode->priority > newPriority)
-      {
-         printf("Nuevo elemento tiene mayor prioridad\n");
-         // el elemento va a ir hasta el frente
          if (currentNode == front)
          {
             element->next = front;
             front = element;
          }
-         // el elemento va a ir hasta atras
-         else if (currentNode == back)
-         {
-
-            back->next = element;
-            back = element;
-         }
-         // el elemento va a ir en medio de dos elementos
          else
          {
-            element->next = currentNode->next;
-            currentNode->next = element;
+            currentNode->next = currentNode->next->next;
+            element->next = currentNode;
          }
          break;
       }
-      else if (currentNode->priority < newPriority)
+      // prioridades son iguales, va al final de la "sub-cola" e inserta
+      else if (currentNode->priority == newPriority)
       {
-         printf("Nuevo elemento tiene menor prioridad\n");
-         // el elemento va a ir hasta atras
-         if (currentNode == back)
+         while (currentNode->next != NULL && currentNode->next->priority == newPriority)
          {
-            back->next = element;
-            back = element;
+            currentNode = currentNode->next;
          }
-         // el elemento va a ir en medio de dos elementos
-         else
-         {
-            element->next = currentNode->next;
-            currentNode->next = element;
-         }
+         element->next = currentNode->next;
+         currentNode->next = element;
          break;
       }
-      // si no se cumple ninguna de las condiciones y por tanto se rompe el ciclo, avanzo
+      // llego hasta atras
+      else if (currentNode->next == NULL)
+      {
+         currentNode->next = element;
+         back = element;
+         break;
+      }
       currentNode = currentNode->next;
    }
+   printQueue();
 }
 
 // 2. Añadir múltiples nodos consecutivos a la cola con prioridades
@@ -248,20 +209,27 @@ void printQueue()
       currentNode = currentNode->next;
       i++;
    }
+   printf("\n");
 }
 
 void main()
 {
+   /* la funcion de imprimir la cola se llama en varias de las funciones, asi como
+   la de checar que esta vacia, por lo que no se muestran explicitamente aqui*/
+
    // agregar elementos estaticamente
+   enqueue(1, 2);
    enqueue(1, 1);
+   enqueue(1, 3);
    enqueue(2, 2);
-   enqueue(3, 3);
-   enqueue(4, 2);
-   enqueue(5, 1);
-   // imprimir cola
-   printQueue();
+   enqueue(8, 1);
+   enqueue(9, 4);
+   enqueue(2, 1);
+   enqueue(2, 3);
+   enqueue(1, 4);
+   enqueue(2, 4);
    // agregando varios elementos consecutivos
-   printf("Agregando varios elementos consecutivos: \n");
+   printf("Agregar varios elementos consecutivos: \n");
    enqueueMultiple();
    // obteniendo el tamaño de la cola
    printf("Tamaño de la cola: %d\n", queueSize());
