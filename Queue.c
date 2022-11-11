@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* cada nodo de la estructura contiene un valor, una prioridad y un apuntador al
+nodo que va después del mismo en la cola*/
 struct node
 {
    int value;
@@ -226,7 +228,7 @@ void main()
    enqueue(8, 1);
    enqueue(9, 4);
    enqueue(2, 1);
-   enqueue(2, 3);
+   enqueue(3, 3);
    enqueue(1, 4);
    enqueue(2, 4);
    // agregando varios elementos consecutivos
