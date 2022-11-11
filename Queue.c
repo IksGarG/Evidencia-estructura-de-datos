@@ -1,13 +1,16 @@
 /*
-   Iker Garcia German
-   Rodrigo Nuñez Magallanes
-   Rafael Blanga Hanono
+   Iker Garcia German, A01782767
+   Rodrigo Nuñez Magallanes, A01028310
+   Rafael Blanga Hanono, A01781442
    Segundo Codigo Evidencia 1
+   Cola (queue) con prioridades
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
+/* cada nodo de la estructura contiene un valor, una prioridad y un apuntador al
+nodo que va después del mismo en la cola*/
 struct node
 {
    int value;
@@ -225,7 +228,7 @@ void main()
    enqueue(8, 1);
    enqueue(9, 4);
    enqueue(2, 1);
-   enqueue(2, 3);
+   enqueue(3, 3);
    enqueue(1, 4);
    enqueue(2, 4);
    // agregando varios elementos consecutivos

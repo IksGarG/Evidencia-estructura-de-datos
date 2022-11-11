@@ -1,19 +1,20 @@
 /*
-   Iker Garcia German
-   Rodrigo Nuñez Magallanes
-   Rafael Blanga Hanono
+   Iker Garcia German, A01782767
+   Rafael Blanga Hanono, A01781442
+   Rodrigo Nuñez Magallanes, A01028310
    Primera Codigo Evidencia 1
+   Lista Circular Doblemente Ligada
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 void beg_insert(int);
 
-/* Esta es una definición de estructura en C para un nodo de una lista doblemente enlazada. 
-    El nodo tiene un campo de datos entero y dos punteros a otros nodos. 
-    El puntero next apunta al siguiente nodo de la lista, y el puntero prev apunta al nodo anterior de la lista. 
-    El puntero head apunta al primer nodo de la lista. 
-    La declaración del puntero head está fuera de la función para que pueda ser accesible por cualquier función del programa. 
+/* Esta es una definición de estructura en C para un nodo de una lista doblemente enlazada.
+    El nodo tiene un campo de datos entero y dos punteros a otros nodos.
+    El puntero next apunta al siguiente nodo de la lista, y el puntero prev apunta al nodo anterior de la lista.
+    El puntero head apunta al primer nodo de la lista.
+    La declaración del puntero head está fuera de la función para que pueda ser accesible por cualquier función del programa.
     Si se declarara dentro de la función, sólo sería accesible dentro de esa función y no podría ser utilizado por otras funciones. */
 
 struct node
@@ -24,15 +25,15 @@ struct node
 };
 struct node *head;
 
-/* Esta es una función para insertar un nuevo nodo al principio de una lista doblemente enlazada. 
-    La función toma un parámetro entero, que es el dato a almacenar en el nuevo nodo. 
-    La función primero asigna memoria para el nuevo nodo usando malloc, y luego comprueba si la asignación fue exitosa. 
-    Si no es así, imprime un mensaje de error y regresa. En caso contrario, almacena los datos en el nuevo nodo, y luego comprueba si la lista está vacía. 
+/* Esta es una función para insertar un nuevo nodo al principio de una lista doblemente enlazada.
+    La función toma un parámetro entero, que es el dato a almacenar en el nuevo nodo.
+    La función primero asigna memoria para el nuevo nodo usando malloc, y luego comprueba si la asignación fue exitosa.
+    Si no es así, imprime un mensaje de error y regresa. En caso contrario, almacena los datos en el nuevo nodo, y luego comprueba si la lista está vacía.
     Si es así, establece el puntero de la cabeza para que apunte al nuevo nodo y establece los punteros next y prev del nuevo nodo para que apunten a sí mismo.
-    Si la lista no está vacía, la función encuentra el último nodo de la lista y establece su puntero siguiente para que apunte al nuevo nodo. 
-    También establece el puntero prev del nuevo nodo para que apunte al último nodo, y establece el puntero prev del nodo principal para que apunte al nuevo nodo. 
-    Por último, establece el puntero de la cabeza para que apunte al nuevo nodo. 
-    Cabe recalcar que Struct es una palabra clave en C que se utiliza para definir una estructura. 
+    Si la lista no está vacía, la función encuentra el último nodo de la lista y establece su puntero siguiente para que apunte al nuevo nodo.
+    También establece el puntero prev del nuevo nodo para que apunte al último nodo, y establece el puntero prev del nodo principal para que apunte al nuevo nodo.
+    Por último, establece el puntero de la cabeza para que apunte al nuevo nodo.
+    Cabe recalcar que Struct es una palabra clave en C que se utiliza para definir una estructura.
     Una estructura es un tipo de datos que contiene una colección de variables de diferentes tipos. */
 
 void beg_insert(int item)
@@ -101,7 +102,7 @@ void insert_multiple(int n)
     }
 }
 
-/*  La función borra un nodo de una lista enlazada. Si el nodo a eliminar es el primer nodo, entonces la función establece que el siguiente nodo sea la cabeza. 
+/*  La función borra un nodo de una lista enlazada. Si el nodo a eliminar es el primer nodo, entonces la función establece que el siguiente nodo sea la cabeza.
     En caso contrario, la función establece que el siguiente nodo del nodo anterior sea el siguiente nodo del nodo a eliminar. */
 
 void delete_node(int item)
@@ -147,7 +148,7 @@ void delete_node(int item)
         printf("Objeto no encontrado\n\n");
     }
 }
-// La funcion borra múltiples nodos de una lista enlazada. 
+// La funcion borra múltiples nodos de una lista enlazada.
 // Se pide al usuario que introduzca el elemento a eliminar, y se llama a la función delete_node para cada elemento.
 
 void delete_multiple(int n)
@@ -160,7 +161,7 @@ void delete_multiple(int n)
         delete_node(item);
     }
 }
-// La función borra una lista circular enlazada. El bucle while itera a través de toda la lista, borrando cada nodo uno a uno hasta llegar de nuevo al nodo cabeza. 
+// La función borra una lista circular enlazada. El bucle while itera a través de toda la lista, borrando cada nodo uno a uno hasta llegar de nuevo al nodo cabeza.
 // El nodo cabeza es entonces borrado y el puntero cabeza es puesto a NULL.
 
 void delete_list()
@@ -177,7 +178,7 @@ void delete_list()
     head = NULL;
     printf("Lista eliminada\n\n");
 }
-// Esta función busca un nodo en una lista enlazada. Si se encuentra el elemento, imprime la posición del mismo. 
+// Esta función busca un nodo en una lista enlazada. Si se encuentra el elemento, imprime la posición del mismo.
 // Si no se encuentra el elemento, imprime "Objeto no encontrado".
 
 void search_node(int item)
@@ -306,7 +307,7 @@ int main()
         printf("\n6.Buscar un nodo");
         printf("\n7.Verificar si la lista esta vacia");
         printf("\n8.Contar el numero de nodos");
-        printf("\n9.Imprimir la lista al reves"); 
+        printf("\n9.Imprimir la lista al reves");
         printf("\n10.Elminar nodos duplicados");
         printf("\n11.Imprimir la lista");
         printf("\n12.Salir");
