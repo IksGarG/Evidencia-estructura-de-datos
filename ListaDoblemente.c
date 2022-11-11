@@ -12,7 +12,9 @@ void beg_insert(int);
 /* Esta es una definición de estructura en C para un nodo de una lista doblemente enlazada. 
     El nodo tiene un campo de datos entero y dos punteros a otros nodos. 
     El puntero next apunta al siguiente nodo de la lista, y el puntero prev apunta al nodo anterior de la lista. 
-    El puntero head apunta al primer nodo de la lista. */
+    El puntero head apunta al primer nodo de la lista. 
+    La declaración del puntero head está fuera de la función para que pueda ser accesible por cualquier función del programa. 
+    Si se declarara dentro de la función, sólo sería accesible dentro de esa función y no podría ser utilizado por otras funciones. */
 
 struct node
 {
@@ -29,7 +31,9 @@ struct node *head;
     Si es así, establece el puntero de la cabeza para que apunte al nuevo nodo y establece los punteros next y prev del nuevo nodo para que apunten a sí mismo.
     Si la lista no está vacía, la función encuentra el último nodo de la lista y establece su puntero siguiente para que apunte al nuevo nodo. 
     También establece el puntero prev del nuevo nodo para que apunte al último nodo, y establece el puntero prev del nodo principal para que apunte al nuevo nodo. 
-    Por último, establece el puntero de la cabeza para que apunte al nuevo nodo. */
+    Por último, establece el puntero de la cabeza para que apunte al nuevo nodo. 
+    Cabe recalcar que Struct es una palabra clave en C que se utiliza para definir una estructura. 
+    Una estructura es un tipo de datos que contiene una colección de variables de diferentes tipos. */
 
 void beg_insert(int item)
 {
@@ -169,6 +173,7 @@ void delete_list()
 }
 // Esta función busca un nodo en una lista enlazada. Si se encuentra el elemento, imprime la posición del mismo. 
 // Si no se encuentra el elemento, imprime "Objeto no encontrado".
+
 void search_node(int item)
 {
     struct node *ptr;
@@ -197,6 +202,7 @@ void search_node(int item)
     }
 }
 // Esta función indica al usuario si la lista se encuentra vacía o no. Apuntando el puntero head a NULL, se indica que la lista está vacía.
+
 void is_empty()
 {
     if (head == NULL)
@@ -209,6 +215,7 @@ void is_empty()
     }
 }
 // La función cuenta el número de nodos de una lista. Si la lista está vacía, imprime "Lista vacía".
+
 void count_nodes()
 {
     struct node *ptr;
@@ -230,6 +237,7 @@ void count_nodes()
 }
 
 // Esta función muestra los nodos de la lista enlazada en orden inverso.
+
 void display_reverse()
 {
     struct node *ptr;
@@ -243,6 +251,7 @@ void display_reverse()
     printf("\n%d", ptr->data);
 }
 // Esta función elimina los valores de los nodos duplicados en una lista enlazada circular.
+
 void delete_duplicate()
 {
     struct node *ptr1, *ptr2, *dup;
