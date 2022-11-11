@@ -1,7 +1,9 @@
 /*
-   Iker Garcia German
-   Rodrigo Nuñez Magallanes
+   Iker Garcia German, A01782767
+   Rafael Blanga Hanono, A01781442
+   Rodrigo Nuñez Magallanes, A01028310
    Primera Codigo Evidencia 1
+   Lista Circular Doblemente Ligada
 */
 
 #include <stdio.h>

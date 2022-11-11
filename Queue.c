@@ -1,8 +1,9 @@
 /*
-   Iker Garcia German
-   Rodrigo Nuñez Magallanes
-   Rafael Blanga Hanono
+   Iker Garcia German, A01782767
+   Rodrigo Nuñez Magallanes, A01028310
+   Rafael Blanga Hanono, A01781442
    Segundo Codigo Evidencia 1
+   Cola (queue) con prioridades
 */
 
 #include <stdio.h>
