@@ -69,18 +69,24 @@ void beg_insert(int item)
     }
 }
 // La función está iterando a través de una lista enlazada e imprimiendo los datos de cada nodo.
-
 void display()
 {
-    struct node *ptr;
-    printf("\n Imprimiendo...");
-    ptr = head;
-    while (ptr->next != head)
+    struct node *temp;
+    temp = head;
+    if (head == NULL)
     {
-        printf("\n%d", ptr->data);
-        ptr = ptr->next;
+        printf("Lista Vacia \n");
     }
-    printf("\n%d", ptr->data);
+    else
+    {
+        printf("Los elementos de la lista son: \n");
+        while (temp->next != head)
+        {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+        printf("%d ", temp->data);
+    }
 }
 // La toma un número entero de entrada n e inserta n elementos en una lista enlazada, empezando por el principio de la lista.
 
@@ -241,14 +247,23 @@ void count_nodes()
 void display_reverse()
 {
     struct node *ptr;
-    printf("\n Imprimiendo nodos al reves...");
-    ptr = head->prev;
-    while (ptr->prev != head->prev)
+    struct node *temp;
+    temp = head;
+    if (head == NULL)
     {
-        printf("\n%d", ptr->data);
-        ptr = ptr->prev;
+        printf("Lista Vacia \n");
     }
-    printf("\n%d", ptr->data);
+    else
+    {
+        printf("\n Imprimiendo nodos al reves...");
+        ptr = head->prev;
+        while (ptr->prev != head->prev)
+        {
+            printf("\n%d", ptr->data);
+            ptr = ptr->prev;
+        }
+        printf("\n%d", ptr->data);
+    }
 }
 // Esta función elimina los valores de los nodos duplicados en una lista enlazada circular.
 
