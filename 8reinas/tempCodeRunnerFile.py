@@ -1,1 +1,0 @@
-board[row][col] = "Q"
