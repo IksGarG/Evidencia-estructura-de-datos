@@ -55,21 +55,26 @@ def remove_queen(row, col):
         print("Reina removida de la posicion: ", row, ",", col)
         print_board()
 
-
-
-def main():
-        for row in range(8):
-                for col in range(8):
+def outOfSpaces(row):
+        print(row)
+        for col in range(row, 8):
+                if board[row][col] == "0":
+                        return False
+                row += 1
+        return True
+                                
+def main(row, col):
+        if row < 8:
+                while col < 8:
                         if board[row][col] == "0":
                                 insert_queen(row, col)
-                                for i in range(8):
-                                        unavaible = False
-                                        if board[7][i] == "X":
-                                                unavaible = True
-                                        else:
-                                                unavaible = False
-                                                break
-                                if unavaible == True:
+                                if not outOfSpaces(row+1):
+                                        main(row+1, 0)
+                                else:
                                         remove_queen(row, col)
+                                        if col == 7:
+                                                main(row-1, 0)
+                                        main(row, col+1)
+                        col += 1 
 
-main()
+main(0, 0)
