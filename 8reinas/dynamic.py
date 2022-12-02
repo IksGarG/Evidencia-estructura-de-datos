@@ -1,3 +1,5 @@
+import time
+start_time = time.time()
 N = 8
 # NxN matrix with all elements set to 0
 board = [["·"]*N for _ in range(N)]
@@ -30,3 +32,4 @@ def N_queens(n):
 N_queens(N)
 for i in board:
     print(i)
+print("--- %s seconds ---" % (time.time() - start_time))

@@ -1,3 +1,5 @@
+import time
+start_time = time.time()
 board = [
         ["·","·","·","·","·","·","·","·"],
         ["·","·","·","·","·","·","·","·"],
@@ -50,6 +52,7 @@ def main():
                                                                         if not conflict(0, col0) and not conflict(1, col1) and not conflict(2, col2) and not conflict(3, col3) and not conflict(4, col4) and not conflict(5, col5) and not conflict(6, col6) and not conflict(7, col7):
                                                                                 print("found!")
                                                                                 print_board()
+                                                                                print("--- %s seconds ---" % (time.time() - start_time))
                                                                                 quit()
 
 main()
